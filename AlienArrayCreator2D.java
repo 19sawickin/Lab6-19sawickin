@@ -9,13 +9,19 @@ public class AlienArrayCreator2D {
 
     public AlienArrayCreator2D(Pane pane) {
         _pane = pane;
+        _alienArray2D = new Alien[7][5];
 
         //TODO: Initialize the 2D-array here
     }
 
     public void generateAliens() {
         this.reset(); //don't worry about this! it's just to make sure you don't double generate
-
+        for(int i=0; i<7; i++) {
+            for(int j=0; j<5; j++) {
+                _alienArray2D[i][j] = new Alien();
+                _alienArray2D[i][j].addToPane(_pane);
+            }
+        }
         /*TODO:
             1. Loop to each array in your array of arrays
             2. Loop through each index in each array in your array of arrays
@@ -28,6 +34,15 @@ public class AlienArrayCreator2D {
     }
 
     public void lineUpAliens() {
+        for(int i=0; i<7; i++) {
+            for(int j=0; j<5; j++) {
+                if(_alienArray2D[i][j]!=null) {
+                    _alienArray2D[i][j].setXPos(50 * i + 75);
+                    _alienArray2D[i][j].setYPos(50 * j +75);
+                }
+            }
+        }
+
         /*TODO:
             1. Loop through your 2d array (double for-loop again!)
             2. For every Alien, make the x and y positions dependent on the Alien's location in the array
@@ -40,6 +55,14 @@ public class AlienArrayCreator2D {
     }
 
     public void rowToCol() {
+        for(int i=0; i<7; i++) {
+            for(int j=0; j<5; j++) {
+                if(_alienArray2D[i][j]!=null) {
+                    _alienArray2D[i][j].setXPos(50 * j + 75);
+                    _alienArray2D[i][j].setYPos(50 * i +75);
+                }
+            }
+        }
         /*TODO:
             After the lineup method, your array should be organized in a row-major fashion
                this means the 2d array is organized as a stack of row arrays, which we want

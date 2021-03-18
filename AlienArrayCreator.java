@@ -1,6 +1,7 @@
 package lab6;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 
 public class AlienArrayCreator {
@@ -11,6 +12,8 @@ public class AlienArrayCreator {
 
     public AlienArrayCreator(Pane pane){
         _pane = pane;
+        _alienArray = new Alien[10];
+
 
         //TODO: Initialize the array here
 
@@ -18,6 +21,10 @@ public class AlienArrayCreator {
 
     public void generateAliens() {
         this.reset(); //don't worry about this! it's just to make sure you don't double generate
+        for(int i=0; i<10; i++) {
+            _alienArray[i] = new Alien();
+            _alienArray[i].addToPane(_pane);
+        }
 
         /*TODO:
             1. Loop through the length of your Alien array
@@ -28,6 +35,15 @@ public class AlienArrayCreator {
     }
 
     public void alternateAlienColors() {
+        for(int i=0; i<10; i++) {
+            if(_alienArray[i]!=null) {
+                if(i%2 == 0){
+                    _alienArray[i].setColor(Color.SKYBLUE);
+                }
+                else _alienArray[i].setColor(Color.OLIVE);
+            }
+
+        }
         /*TODO:
             1. Loop through your alien array
             2. If the Alien's index is even, change its color to blue
@@ -37,6 +53,12 @@ public class AlienArrayCreator {
     }
 
     public void lineUpAliens() {
+        for(int i=0; i<10; i++) {
+            if(_alienArray[i]!=null) {
+                _alienArray[i].setXPos(50 * i + 75);
+                _alienArray[i].setYPos(Constants.PANEL_H / 2);
+            }
+        }
         /*TODO:
             1. Loop through your Alien array
             2. For every Alien, make the y position the center of the screen (250)
@@ -47,6 +69,14 @@ public class AlienArrayCreator {
     }
 
     public void removeBlue() {
+        for(int i=0; i<10; i++) {
+            if(_alienArray[i]!=null) {
+                if(_alienArray[i].getColor()==Color.SKYBLUE) {
+                    _alienArray[i].removeFromPane(_pane);
+                    _alienArray[i] = null;
+                }
+            }
+        }
         /*TODO:
             1. Loop through your alien array
             2. If the color of the alien is SKYBLUE, remove that alien from the array
